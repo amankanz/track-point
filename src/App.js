@@ -55,7 +55,15 @@ export default function App() {
 
       <footer>
         <p>
-          &copy; 2024 <a href="">Kaneza</a> - TrackPoint. All rights reserved.
+          &copy; 2024{" "}
+          <a
+            href="https://kanezaio.netlify.app/#intro"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Kaneza
+          </a>{" "}
+          - TrackPoint. All rights reserved.
         </p>
       </footer>
     </div>

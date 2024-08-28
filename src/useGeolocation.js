@@ -19,8 +19,14 @@ export function useGeolocation() {
         setIsLoading(false);
       },
       (error) => {
-        setError(error.message);
+        if (error) {
+          throw new Error(
+            "Network error. Check your Internet connection DevTools console for more information."
+          );
+        }
         setIsLoading(false);
+        setError(error.message);
+        console.log(error.message);
       }
     );
   }
