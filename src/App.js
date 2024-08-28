@@ -26,8 +26,8 @@ export default function App() {
         <div className="card">
           <h2>Welcome to TrackPoint</h2>
           <p>
-            Your ultimate geolocation tool. To Start exploring press on "Get my
-            position"!
+            Your precise GPS location is just a tap away. Click "Get my
+            position" to instantly find out where you are on the map!
           </p>
 
           <button onClick={handleClick} disabled={isLoading}>
