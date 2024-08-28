@@ -1,15 +1,11 @@
 import { useState } from "react";
 
-export function useGeolocation(counting) {
+export function useGeolocation() {
   const [isLoading, setIsLoading] = useState(false);
   const [position, setPosition] = useState({});
   const [error, setError] = useState(null);
 
-  const { lat, lng } = position;
-
   function getPosition() {
-    counting?.((count) => count + 1);
-
     if (!navigator.geolocation)
       return setError("Your browser does not support geolocation");
 
@@ -29,5 +25,5 @@ export function useGeolocation(counting) {
     );
   }
 
-  return { lat, lng, getPosition, isLoading, error };
+  return { position, getPosition, isLoading, error };
 }

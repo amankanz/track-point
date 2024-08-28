@@ -2,33 +2,62 @@ import { useState } from "react";
 import { useGeolocation } from "./useGeolocation";
 
 export default function App() {
+  const {
+    position: { lat, lng },
+    getPosition,
+    isLoading,
+    error,
+  } = useGeolocation();
+
   const [countClicks, setCountClicks] = useState(0);
 
-  const { lat, lng, getPosition, isLoading, error } =
-    useGeolocation(setCountClicks);
+  function handleClick() {
+    setCountClicks((count) => count + 1);
+    getPosition();
+  }
 
   return (
-    <div>
-      <button onClick={getPosition} disabled={isLoading}>
-        Get my position
-      </button>
+    <div className="container">
+      <header>
+        <h1>TrackPoint</h1>
+      </header>
 
-      {isLoading && <p>Loading position...</p>}
-      {error && <p>{error}</p>}
-      {!isLoading && !error && lat && lng && (
-        <p>
-          Your GPS position:{" "}
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href={`https://www.openstreetmap.org/#map=16/${lat}/${lng}`}
-          >
-            {lat}, {lng}
-          </a>
-        </p>
-      )}
+      <main>
+        <div className="card">
+          <h2>Welcome to TrackPoint</h2>
+          <p>
+            Your ultimate geolocation tool. To Start exploring press on "Get my
+            position"!
+          </p>
+
+          <button onClick={handleClick} disabled={isLoading}>
+            Get my position
+          </button>
+
+          {isLoading && <p>Loading position...</p>}
+          {error && <p>{error}</p>}
+          {!isLoading && !error && lat && lng && (
+            <p>
+              Your GPS position:{" "}
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={`https://www.openstreetmap.org/#map=16/${lat}/${lng}`}
+              >
+                {lat}, {lng}
+              </a>
+            </p>
+          )}
+        </div>
+      </main>
 
       <p>You requested position {countClicks} times</p>
+
+      <footer>
+        <p>
+          &copy; 2024 <a href="">Kaneza</a> - TrackPoint. All rights reserved.
+        </p>
+      </footer>
     </div>
   );
 }
